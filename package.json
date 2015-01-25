@@ -1,0 +1,15 @@
+{
+  "name": "node-auto-deploy",
+  "version": "0.0.1",
+  "description": "Auto deploy node applications ",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@home.jacekdominiak.com:jacek/node-auto-deploy.git"
+  },
+  "author": "Jacek Dominiak <jacek@effortable.com>",
+  "license": "MIT"
+}
