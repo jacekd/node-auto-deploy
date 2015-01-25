@@ -38,20 +38,44 @@ describe('server based tests', function() {
     });
 
     it('should be able to make deploy request', function (done) {
-        var data = {};
+        var data = {
+            "ref": "develop",
+            "build_status": "success"
+        };
 
         var options = {
-            uri: 'http://' + config.app.HOST + ':' + config.app.PORT,
-            method: 'GET',
+            uri: 'http://' + config.app.HOST + ':' + config.app.PORT + '/deploy?script=test.sh',
+            method: 'POST',
             json: data
         };
 
         request(options, function (err, res, body) {
             if (err) throw err;
-            expect(res.statusCode).to.equal(404);
-            expect(body).to.equal('Not Found');
+            expect(res.statusCode).to.equal(200);
+            expect(body).to.equal('Accepted');
             done();
         });
+    });
+
+    it('should fail if no script if specified', function (done) {
+        var data = {
+            "ref": "develop",
+            "build_status": "success"
+        };
+
+        var options = {
+            uri: 'http://' + config.app.HOST + ':' + config.app.PORT + '/deploy',
+            method: 'POST',
+            json: data
+        };
+
+        request(options, function (err, res, body) {
+            if (err) throw err;
+            expect(res.statusCode).to.equal(200);
+            expect(body).to.equal('No Script Data');
+            done();
+        });
+
     });
 
     it('should receive 404 when request is other than POST /deploy', function (done) {

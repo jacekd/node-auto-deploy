@@ -9,10 +9,16 @@ var config = require('./config');
 
 // Application imports
 var http = require('http'),
-    qs = require('querystring');
+    qs = require('querystring'),
+    url = require('url'),
+    exec = require('child_process').execFile;
 
 http.createServer(function (req, res) {
-    if (req.method === "POST" && req.url === "/deploy") {
+
+    // deconstruct url
+    var urlData = url.parse(req.url, true);
+
+    if (req.method === "POST" && urlData.pathname === "/deploy") {
 
         // initialize
         var requestBody = '';
@@ -28,14 +34,23 @@ http.createServer(function (req, res) {
 
         // Parse data and respond
         req.on('end', function () {
+            res.writeHead(200, {'Content-Type': 'text/plain'});
             var data = JSON.parse(requestBody);
 
-            if (!!data.test) {
-                console.log(data);
+            if (data[config.conditions.address.branch] == config.conditions.branch
+                && data[config.conditions.address.status] == config.conditions.status) {
+
+                // exec a shell script
+                if (!!urlData.query['script']) {
+                    exec(config.script.PATH + urlData.query['script'], function (err, stout, stderr) {
+                        //res.pipe(err || stout || stderr);
+                        res.end('Accepted');
+                    });
+                } else {
+                    res.end('No Script Data');
+                }
             }
 
-            res.writeHead(200, {'Content-Type': 'text/plain'});
-            res.end('Accepted');
         });
     } else {
         res.writeHead(404, 'Resource Not Found', {'Content-Type': 'text/plain'});

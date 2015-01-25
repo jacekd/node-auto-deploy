@@ -12,5 +12,13 @@ module.exports = {
     },
     "script": {
         "PATH": '/'
+    },
+    "conditions": {
+        "address": {
+            "branch": "ref",
+            "status": "build_status"
+        },
+        "branch": "develop",
+        "status": "success"
     }
 };
