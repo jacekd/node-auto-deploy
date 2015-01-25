@@ -4,6 +4,8 @@
 
 Application designed to run the script in the server it is running. Used to redeploy the application by the [gitlab ci](https://about.gitlab.com/gitlab-ci/) build webhook. If conditions are met, it executes the script specified as a parameter of the `POST /deploy?script=` value.
 
+**Application has no dependencies, runs of bare node.js**
+
 ##Installation
 1. Clone the repository
 1. Start the `server.js` with `node` or `supervisor` or `forever`
