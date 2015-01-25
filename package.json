@@ -11,5 +11,9 @@
     "url": "git@home.jacekdominiak.com:jacek/node-auto-deploy.git"
   },
   "author": "Jacek Dominiak <jacek@effortable.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  }
 }

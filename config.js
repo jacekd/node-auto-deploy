@@ -9,5 +9,8 @@ module.exports = {
     "app": {
         "PORT": 9001,
         "HOST": "localhost"
+    },
+    "script": {
+        "PATH": '/'
     }
 };

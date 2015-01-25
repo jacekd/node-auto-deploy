@@ -1,0 +1,1 @@
+[![build status](http://ci.jacekdominiak.com/projects/11/status.png?ref=master)](http://ci.jacekdominiak.com/projects/11?ref=master)
