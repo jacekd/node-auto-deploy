@@ -1,6 +1,7 @@
 #Node.js auto deploy
 
 [![build status](http://ci.jacekdominiak.com/projects/11/status.png?ref=master)](http://ci.jacekdominiak.com/projects/11?ref=master)
+[![Build Status](https://travis-ci.org/jacekd/node-auto-deploy.svg)](https://travis-ci.org/jacekd/node-auto-deploy)
 
 Application designed to run the script in the server it is running. Used to redeploy the application by the [gitlab ci](https://about.gitlab.com/gitlab-ci/) build webhook. If conditions are met, it executes the script specified as a parameter of the `POST /deploy?script=` value.
 
